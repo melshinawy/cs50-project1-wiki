@@ -1,0 +1,19 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+{{ search_query }} search results
+{% endblock %}
+
+{% block body %}
+<h1>Page not found</h1>
+<p>A page with the title <em>{{ search_query }}</em> does not exist.</p><br>
+
+{% if similar_entries|length > 0 %}
+    <p>Did you mean:</p>
+    <ul>
+        {% for entry in similar_entries %}
+        <li><a href="{% url 'wiki_pages' title=entry %}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
